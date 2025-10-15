@@ -1,0 +1,56 @@
+Clone the repository:
+
+1. git clone <repository-url>
+cd <repository-directory>
+Check current branch (optional, but clarifying):
+
+2. git branch
+You’ll likely see main already checked out.
+
+Ensure you’re on the main branch (likely redundant but safe):
+
+3. git checkout main
+Pull the latest changes (optional immediately after clone, but ensures up-to-date state):
+
+4. git pull origin main
+
+
+
+
+********************************
+
+Cherry-picking individual commits, while useful for selective patches, can indeed lead to complications if those commits depend on code changes introduced in other commits.
+
+When you cherry-pick a commit, you are only applying the changes from that specific commit to the branch you are working on. 
+If this commit relies on changes from previous commits that you are not cherry-picking, the new branch could be left in an inconsistent state, potentially leading to code breaks.
+
+Few of the Risks with Cherry picking approach:
+Merge Conflicts:
+Cherry-picking can often lead to merge conflicts, especially if the codebase has diverged significantly between the source and target branches. Resolving these conflicts can be complex and time-consuming.
+
+Loss of Context:
+A commit in one branch is often made in the context of other changes that may not be present in the target branch. This loss of context can introduce bugs or inconsistencies in the target branch.
+
+Difficulty in Automated Processes:
+Automated workflows such as continuous integration (CI) and deployment pipelines can be more challenging to manage when cherry-picking is used frequently, as the differences between branches might lead to unexpected results.
+
+
+Duplicated Work:
+In some cases, cherry-picking can result in redundant work. For example, if you need to cherry-pick several commits that are closely related, they might be better off being merged as a whole rather than piecemeal.
+
+Divergence from Original Branch:
+Consistently cherry-picking commits from one branch to another can lead to divergence between branches. Over time, this can make synchronization between the branches more difficult.
+
+Maintaining Multiple Branches:
+If a commit is cherry-picked into multiple branches, and subsequent changes are necessary, you may need to apply those changes multiple times across different branches, leading to increased maintenance overhead.
+
+Duplicate Commits:
+Cherry-picking a single commit onto multiple branches can result in the same changes appearing multiple times in the Git history, which can make the history harder to read and understand.
+
+
+Potential for Introduced Bugs:
+Cherry-picking changes without their original context can sometimes introduce subtle bugs or unexpected behavior, especially if the original commit relied on other code or fixes that are not present in the target branch.
+
+History Fragmentation:
+Cherry-picking can fragment the commit history, making it harder to follow the logical sequence of changes. This can complicate understanding the evolution of the codebase.
+

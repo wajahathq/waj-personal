@@ -1,0 +1,31 @@
+Data Source=powerbi://api.powerbi.com/v1.0/myorg/GO%20-%20ADV-WEU-GHUB-Standardization-AIWbench-INT-DEV;Initial Catalog=GitHub_Metrics_Final2;
+
+Attached is a spreadsheet with 2 tabs Source and Target. I need to convert the data in source tab to format in Target tab. 
+1. Overwrite all the data in Target tab with data from source tab and ensure the format is target is maintained 
+2 . Below is the mapping for Source tab Column Environment that has a corresponding value in Target tab.
+
+Source  (Environment Column)	Target 
+KPMG-PRODUCTION	Workbench – PROD Environments:
+KPMGQA-DEVELOPMENT	Workbench – Non-PROD Environments
+KPMGQA-QA	Workbench – Non-PROD Environments
+KPMG-UAT	Workbench – PROD Environments:
+KPMGUSADVCLOUDOPS-PRODUCTION	Azure Commercial Cloud – PROD Environments:
+KPMGUSADVCLOUDOPS-UAT	Azure Commercial Cloud – PROD Environments:
+KPMGUSADVSPECTRUM-CAT	Azure Commercial Cloud – Non-PROD Environments: 
+KPMGUSADVSPECTRUM-DEVELOPMENT	Azure Commercial Cloud – Non-PROD Environments: 
+KPMGUSADVSPECTRUM-QA	Azure Commercial Cloud – Non-PROD Environments: 
+
+
+=ISERROR(MATCH(C3,Recent!C:C, 0))
+
+https://kpmgus-my.sharepoint.com/personal/wquraishi_kpmg_com/Documents/PBI-DailyImport/AllProjectsGH.xlsx
+https://kpmgus-my.sharepoint.com/personal/wquraishi_kpmg_com/Documents/PBI-DailyImport/Pull_requests_Lookup_Latest.xlsx
+https://kpmgus-my.sharepoint.com/personal/wquraishi_kpmg_com/Documents/PBI-DailyImport/Issues_Lookup_Latest.xlsx
+https://kpmgus-my.sharepoint.com/personal/wquraishi_kpmg_com/Documents/PBI-DailyImport/ModelLibrary_Mockup.xlsx?web=1
+
+
+
+
+File.Contents("C:\Users\wquraishi\OneDrive - KPMG\PBI-DailyImport\ModelLibrary_Mockup.xlsx")
+
+=IFNA(VLOOKUP(C3, 'C:\Users\wquraishi\Documents\scottM\March5\[modelsOpenai.csv]modelsOpenai'!$C:$D, 2, 0), C3)
